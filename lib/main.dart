@@ -44,9 +44,10 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         child: const Icon(
           Icons.center_focus_strong,
+          color: Colors.black,
         ),
         onPressed: () => _googleMapController!
             .animateCamera(CameraUpdate.newCameraPosition(_initialPosition)),
