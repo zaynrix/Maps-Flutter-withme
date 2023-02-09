@@ -32,14 +32,13 @@ class MyApp extends StatelessWidget {
 
 class MapScreen extends StatelessWidget {
   const MapScreen({Key? key}) : super(key: key);
+  final _initialPosition = const CameraPosition(
+      target: LatLng(31.477157832309437, 34.405053122885384), zoom: 11.5);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-            target: LatLng(31.477157832309437, 34.405053122885384), zoom: 11.5),
-      ),
+    return Scaffold(
+      body: GoogleMap(initialCameraPosition: _initialPosition),
     );
   }
 }
