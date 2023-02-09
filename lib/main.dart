@@ -25,20 +25,45 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MapScreen(),
+      home: MapScreen(),
     );
   }
 }
 
-class MapScreen extends StatelessWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreen extends StatefulWidget {
+  MapScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
   final _initialPosition = const CameraPosition(
       target: LatLng(31.477157832309437, 34.405053122885384), zoom: 11.5);
+
+  GoogleMapController? _googleMapController;
+
+  @override
+  void dispose() {
+    _googleMapController!.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(initialCameraPosition: _initialPosition),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.location_on_outlined),
+        onPressed: () => _googleMapController!
+            .animateCamera(CameraUpdate.newCameraPosition(_initialPosition)),
+      ),
+      body: GoogleMap(
+          onMapCreated: (controller) => _googleMapController = controller,
+          initialCameraPosition: _initialPosition,
+          myLocationButtonEnabled: false,
+          myLocationEnabled: false),
     );
   }
 }
