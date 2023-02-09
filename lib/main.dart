@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(primaryColor: Colors.white),
       home: MapScreen(),
@@ -51,17 +52,38 @@ class _MapScreenState extends State<MapScreen> {
           style: TextStyle(color: Colors.black),
         ),
         actions: [
-          TextButton(
+          if (_origin != null)
+            TextButton(
+              style: TextButton.styleFrom(foregroundColor: Colors.green),
               onPressed: () => _googleMapController!.animateCamera(
-                    CameraUpdate.newCameraPosition(
-                      CameraPosition(
-                        target: _origin!.position,
-                        zoom: 11.5,
-                        tilt: 50.0,
-                      ),
-                    ),
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: _origin!.position,
+                    zoom: 11.5,
+                    tilt: 50.0,
                   ),
-              child: Text("Origin"))
+                ),
+              ),
+              child: const Text(
+                "ORIGIN",
+              ),
+            ),
+          if (_destination != null)
+            TextButton(
+              style: TextButton.styleFrom(foregroundColor: Colors.blue),
+              onPressed: () => _googleMapController!.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: _destination!.position,
+                    zoom: 11.5,
+                    tilt: 50.0,
+                  ),
+                ),
+              ),
+              child: const Text(
+                "DEST",
+              ),
+            ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
