@@ -31,6 +31,8 @@ class _MapScreenState extends State<MapScreen> {
       target: LatLng(31.477157832309437, 34.405053122885384), zoom: 11.5);
 
   GoogleMapController? _googleMapController;
+  Marker? _origin;
+  Marker? _destination;
 
   @override
   void dispose() {
@@ -53,10 +55,40 @@ class _MapScreenState extends State<MapScreen> {
             .animateCamera(CameraUpdate.newCameraPosition(_initialPosition)),
       ),
       body: GoogleMap(
-          onMapCreated: (controller) => _googleMapController = controller,
-          initialCameraPosition: _initialPosition,
-          myLocationButtonEnabled: false,
-          myLocationEnabled: false),
+        onMapCreated: (controller) => _googleMapController = controller,
+        initialCameraPosition: _initialPosition,
+        myLocationButtonEnabled: false,
+        myLocationEnabled: false,
+        markers: {
+          if (_origin != null) _origin!,
+          if (_destination != null) _destination!,
+        },
+        onLongPress: _addMarker,
+      ),
     );
+  }
+
+  _addMarker(LatLng pos) {
+    if (_origin == null || (_origin != null && _destination != null)) {
+      setState(() {
+        _origin = Marker(
+            markerId: MarkerId("origin"),
+            infoWindow: InfoWindow(title: "Origin"),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueGreen),
+            position: pos);
+
+        _destination = null;
+      });
+    } else {
+      setState(() {
+        _destination = Marker(
+            markerId: MarkerId("destination"),
+            infoWindow: InfoWindow(title: "Destination"),
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+            position: pos);
+      });
+    }
   }
 }
