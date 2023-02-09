@@ -72,8 +72,8 @@ class _MapScreenState extends State<MapScreen> {
     if (_origin == null || (_origin != null && _destination != null)) {
       setState(() {
         _origin = Marker(
-            markerId: MarkerId("origin"),
-            infoWindow: InfoWindow(title: "Origin"),
+            markerId: const MarkerId("origin"),
+            infoWindow: const InfoWindow(title: "Origin"),
             icon: BitmapDescriptor.defaultMarkerWithHue(
                 BitmapDescriptor.hueGreen),
             position: pos);
@@ -83,8 +83,8 @@ class _MapScreenState extends State<MapScreen> {
     } else {
       setState(() {
         _destination = Marker(
-            markerId: MarkerId("destination"),
-            infoWindow: InfoWindow(title: "Destination"),
+            markerId: const MarkerId("destination"),
+            infoWindow: const InfoWindow(title: "Destination"),
             icon:
                 BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
             position: pos);
