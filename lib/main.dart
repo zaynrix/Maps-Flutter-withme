@@ -80,8 +80,8 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 ),
               ),
-              child: const Text(
-                "DEST",
+              child: Text(
+                "DESTNation".toUpperCase(),
               ),
             ),
         ],
