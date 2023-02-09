@@ -44,6 +44,26 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text(
+          "Google Maps",
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => _googleMapController!.animateCamera(
+                    CameraUpdate.newCameraPosition(
+                      CameraPosition(
+                        target: _origin!.position,
+                        zoom: 11.5,
+                        tilt: 50.0,
+                      ),
+                    ),
+                  ),
+              child: Text("Origin"))
+        ],
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
