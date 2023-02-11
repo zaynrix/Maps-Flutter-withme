@@ -20,12 +20,13 @@ class DirectionRepo {
       queryParameters: {
         'origin': '${origin.latitude},${origin.longitude}',
         'destination': '${destination.latitude},${destination.longitude}',
-        'key': "AIzaSyBqGhclQwxbF6cP4g7k_3Q27leEWxP4oq8",
+        'key': "AIzaSyCtFTKLDioQYDHZRAmIsL6iksSLvTTzoYQ",
       },
     );
 
     // Check if response is successful
     if (response.statusCode == 200) {
+      print("This is response ${response.data}");
       return Directions.fromMap(response.data);
     }
     return null;

@@ -11,20 +11,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Mapper',
       theme: ThemeData(primaryColor: Colors.white),
-      home: MapScreen(),
+      home: const MapScreen(),
     );
   }
 }
 
 class MapScreen extends StatefulWidget {
-  MapScreen({Key? key}) : super(key: key);
+  const MapScreen({Key? key}) : super(key: key);
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -34,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
   final _initialPosition = const CameraPosition(
       // target: LatLng(31.477157832309437, 34.405053122885384),
       target: LatLng(37.773972, -122.431297),
-      zoom: 11.5);
+      zoom: 15.5);
 
   GoogleMapController? _googleMapController;
   Marker? _origin;
@@ -65,7 +64,7 @@ class _MapScreenState extends State<MapScreen> {
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
                     target: _origin!.position,
-                    zoom: 11.5,
+                    zoom: 25.5,
                     tilt: 50.0,
                   ),
                 ),
@@ -80,6 +79,7 @@ class _MapScreenState extends State<MapScreen> {
               onPressed: () => _googleMapController!.animateCamera(
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
+                    bearing: 20,
                     target: _destination!.position,
                     zoom: 11.5,
                     tilt: 50.0,
@@ -103,19 +103,21 @@ class _MapScreenState extends State<MapScreen> {
         ),
         child: const Icon(Icons.center_focus_strong),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   child: const Icon(
-      //     Icons.center_focus_strong,
-      //     color: Colors.black,
-      //   ),
-      //   onPressed: () => _googleMapController!
-      //       .animateCamera(CameraUpdate.newCameraPosition(_initialPosition)),
-      // ),
       body: Stack(
         alignment: Alignment.center,
         children: [
           GoogleMap(
+            circles: {
+              if (_destination != null)
+                Circle(
+                  circleId: const CircleId('currentCircle'),
+                  center: LatLng(
+                      _origin!.position.latitude, _origin!.position.longitude),
+                  radius: 500,
+                  fillColor: Colors.blue.shade100.withOpacity(0.5),
+                  strokeColor: Colors.blue.shade100.withOpacity(0.4),
+                ),
+            },
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
             initialCameraPosition: _initialPosition,
@@ -128,8 +130,8 @@ class _MapScreenState extends State<MapScreen> {
               if (_info != null)
                 Polyline(
                   polylineId: const PolylineId('overview_polyline'),
-                  color: Colors.red,
-                  width: 5,
+                  color: const Color(0xFF7B61FF),
+                  width: 6,
                   points: _info!.polylinePoints
                       .map((e) => LatLng(e.latitude, e.longitude))
                       .toList(),
@@ -139,14 +141,14 @@ class _MapScreenState extends State<MapScreen> {
           ),
           if (_info != null)
             Positioned(
-              top: 20.0,
+              bottom: 50.0,
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 6.0,
                   horizontal: 12.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.yellowAccent,
+                  color: Colors.lightGreenAccent,
                   borderRadius: BorderRadius.circular(20.0),
                   boxShadow: const [
                     BoxShadow(
