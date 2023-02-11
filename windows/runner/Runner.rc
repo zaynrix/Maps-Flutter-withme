@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.maper" "\0"
-            VALUE "FileDescription", "mapswithme" "\0"
+            VALUE "FileDescription", "Mapper" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "mapswithme" "\0"
+            VALUE "InternalName", "Mapper" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.maper. All rights reserved." "\0"
             VALUE "OriginalFilename", "mapswithme.exe" "\0"
-            VALUE "ProductName", "mapswithme" "\0"
+            VALUE "ProductName", "Mapper" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

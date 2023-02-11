@@ -138,6 +138,34 @@ class _MapScreenState extends State<MapScreen> {
           ),
           if (_info != null)
             Positioned(
+              top: 40.0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 6.0,
+                  horizontal: 12.0,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.lightGreenAccent,
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0, 2),
+                      blurRadius: 6.0,
+                    )
+                  ],
+                ),
+                child: Text(
+                  '${_info!.totalDistance}, ${_info!.totalDuration}',
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          if (_info != null)
+            Positioned(
               bottom: 50.0,
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -156,7 +184,7 @@ class _MapScreenState extends State<MapScreen> {
                   ],
                 ),
                 child: Text(
-                  '${_info!.totalDistance}, ${_info!.totalDuration}',
+                  '${_info!.endAddress}',
                   style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w600,

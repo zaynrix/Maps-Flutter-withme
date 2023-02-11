@@ -6,8 +6,10 @@ class Directions {
   final List<PointLatLng> polylinePoints;
   final String totalDistance;
   final String totalDuration;
+  final String endAddress;
 
   const Directions({
+    required this.endAddress,
     required this.bounds,
     required this.polylinePoints,
     required this.totalDistance,
@@ -35,13 +37,16 @@ class Directions {
     // Distance & Duration
     String distance = '';
     String duration = '';
+    String toAddress = '';
     if ((data['legs'] as List).isNotEmpty) {
       final leg = data['legs'][0];
       distance = leg['distance']['text'];
       duration = leg['duration']['text'];
+      toAddress = leg['end_address'];
     }
 
     return Directions(
+      endAddress: toAddress,
       bounds: bounds,
       polylinePoints:
           PolylinePoints().decodePolyline(data['overview_polyline']['points']),

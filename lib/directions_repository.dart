@@ -24,9 +24,11 @@ class DirectionRepo {
       },
     );
 
+    print("This is origion , dest '${origin.latitude},${origin.longitude}");
+    print("'destination': '${destination.latitude},${destination.longitude}'");
     // Check if response is successful
     if (response.statusCode == 200) {
-      print("This is response ${response.data}");
+      print("This is response ${response.data.toString()}");
       return Directions.fromMap(response.data);
     }
     return null;
