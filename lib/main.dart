@@ -50,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text(
-          "Google Maps",
+          "Distance Calculator",
           style: TextStyle(color: Colors.black),
         ),
         actions: [
@@ -78,7 +78,7 @@ class _MapScreenState extends State<MapScreen> {
                   CameraPosition(
                     bearing: 20,
                     target: _destination!.position,
-                    zoom: 11.5,
+                    zoom: 25.5,
                     tilt: 50.0,
                   ),
                 ),
@@ -136,34 +136,34 @@ class _MapScreenState extends State<MapScreen> {
             },
             onLongPress: _addMarker,
           ),
-          // if (_info != null)
-          //   Positioned(
-          //     top: 40.0,
-          //     child: Container(
-          //       padding: const EdgeInsets.symmetric(
-          //         vertical: 6.0,
-          //         horizontal: 12.0,
-          //       ),
-          //       decoration: BoxDecoration(
-          //         color: Colors.lightGreenAccent,
-          //         borderRadius: BorderRadius.circular(10.0),
-          //         boxShadow: const [
-          //           BoxShadow(
-          //             color: Colors.black26,
-          //             offset: Offset(0, 2),
-          //             blurRadius: 6.0,
-          //           )
-          //         ],
-          //       ),
-          //       child: Text(
-          //         '${_info!.totalDistance}, ${_info!.totalDuration}',
-          //         style: const TextStyle(
-          //           fontSize: 18.0,
-          //           fontWeight: FontWeight.w600,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
+          if (_info != null)
+            Positioned(
+              bottom: 40.0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 6.0,
+                  horizontal: 12.0,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.lightGreenAccent,
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0, 2),
+                      blurRadius: 6.0,
+                    )
+                  ],
+                ),
+                child: Text(
+                  '${_info!.totalDistance}, ${_info!.totalDuration}',
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
           if (_info != null)
             Positioned(
               top: 20.0,
@@ -194,7 +194,7 @@ class _MapScreenState extends State<MapScreen> {
                         child: Row(
                           children: [
                             const Icon(
-                              Icons.my_location,
+                              Icons.location_on,
                               color: Colors.blue,
                             ),
                             const SizedBox(
