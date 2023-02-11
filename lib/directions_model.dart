@@ -7,9 +7,11 @@ class Directions {
   final String totalDistance;
   final String totalDuration;
   final String endAddress;
+  final String startAddres;
 
   const Directions({
     required this.endAddress,
+    required this.startAddres,
     required this.bounds,
     required this.polylinePoints,
     required this.totalDistance,
@@ -38,14 +40,17 @@ class Directions {
     String distance = '';
     String duration = '';
     String toAddress = '';
+    String fromAddress = '';
     if ((data['legs'] as List).isNotEmpty) {
       final leg = data['legs'][0];
       distance = leg['distance']['text'];
       duration = leg['duration']['text'];
       toAddress = leg['end_address'];
+      fromAddress = leg['start_address'];
     }
 
     return Directions(
+      startAddres: fromAddress,
       endAddress: toAddress,
       bounds: bounds,
       polylinePoints:
