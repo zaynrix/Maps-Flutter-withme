@@ -136,64 +136,105 @@ class _MapScreenState extends State<MapScreen> {
             },
             onLongPress: _addMarker,
           ),
+          // if (_info != null)
+          //   Positioned(
+          //     top: 40.0,
+          //     child: Container(
+          //       padding: const EdgeInsets.symmetric(
+          //         vertical: 6.0,
+          //         horizontal: 12.0,
+          //       ),
+          //       decoration: BoxDecoration(
+          //         color: Colors.lightGreenAccent,
+          //         borderRadius: BorderRadius.circular(10.0),
+          //         boxShadow: const [
+          //           BoxShadow(
+          //             color: Colors.black26,
+          //             offset: Offset(0, 2),
+          //             blurRadius: 6.0,
+          //           )
+          //         ],
+          //       ),
+          //       child: Text(
+          //         '${_info!.totalDistance}, ${_info!.totalDuration}',
+          //         style: const TextStyle(
+          //           fontSize: 18.0,
+          //           fontWeight: FontWeight.w600,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
           if (_info != null)
             Positioned(
-              top: 40.0,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 6.0,
-                  horizontal: 12.0,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.lightGreenAccent,
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black26,
-                      offset: Offset(0, 2),
-                      blurRadius: 6.0,
-                    )
+              top: 20.0,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width - 20,
+                child: Column(
+                  children: [
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.my_location,
+                              color: Colors.green,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(_info!.startAddres),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.my_location,
+                              color: Colors.blue,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(_info!.endAddress),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                child: Text(
-                  '${_info!.totalDistance}, ${_info!.totalDuration}',
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
               ),
-            ),
-          if (_info != null)
-            Positioned(
-              bottom: 50.0,
-              child: Card(
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "From :${_info!.endAddress}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        "To :${_info!.endAddress}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // child: Card(
+              //   child: Container(
+              //     padding: const EdgeInsets.all(8.0),
+              //     width: MediaQuery.of(context).size.width,
+              //     color: Colors.white,
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       mainAxisSize: MainAxisSize.min,
+              //       children: [
+              //         Text(
+              //           "From :${_info!.startAddres}",
+              //           style: const TextStyle(
+              //             fontSize: 18.0,
+              //             fontWeight: FontWeight.w600,
+              //           ),
+              //         ),
+              //         Text(
+              //           "To :${_info!.endAddress}",
+              //           style: const TextStyle(
+              //             fontSize: 18.0,
+              //             fontWeight: FontWeight.w600,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ),
         ],
       ),
